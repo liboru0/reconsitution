@@ -1,4 +1,4 @@
-package com.liboru.reconsitution.learn.case01.v1;
+package com.liboru.reconsitution.learn.case01;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
