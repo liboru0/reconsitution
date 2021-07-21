@@ -30,12 +30,7 @@ public class Customer {
         Iterator<Rental> rentalIterator = rentals.iterator();
         String result = "Rental Record for " + this.getName() + "\n";
         while (rentalIterator.hasNext()) {
-            double thisAmount = 0;
             Rental each = rentalIterator.next();
-
-            // determine amounts for each line
-            thisAmount = each.getCharge();
-
             // add frequent renter points
             frequentRenterPoints++;
             // add bonus for a two day new release rental
@@ -44,9 +39,11 @@ public class Customer {
                 frequentRenterPoints++;
             }
             // show figures for this rental
+            // 将 thisAmount 临时变量去除，但调用多次 each.getCharge() 会付出
+            // 性能上的代价，但是这可以在 Rental 类中优化
             result += "\t" + each.getMovie().getTitle() + "\t" +
-                    thisAmount + "\n";
-            totalAmount += thisAmount;
+                    each.getCharge() + "\n";
+            totalAmount += each.getCharge();
         }
 
         // add footer lines
