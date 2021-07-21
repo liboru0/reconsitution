@@ -1,4 +1,4 @@
-package com.liboru.reconsitution.learn.case01.$1;
+package com.liboru.reconsitution.learn.case01.v1;
 
 import lombok.Getter;
 
