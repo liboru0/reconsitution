@@ -1,11 +1,5 @@
 package com.liboru.reconsitution.learn.case01;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
-@AllArgsConstructor
-@Getter
 public class Movie {
 
     public static final int CHILDREN = 2;
@@ -14,8 +8,24 @@ public class Movie {
 
     private String title;
 
-    @Setter
     private int priceCode;
+
+    public Movie(String title, int priceCode) {
+        this.title = title;
+        this.priceCode = priceCode;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getPriceCode() {
+        return priceCode;
+    }
+
+    public void setPriceCode(int priceCode) {
+        this.priceCode = priceCode;
+    }
 
     public double getCharge(int daysRented){
         double result = 0;

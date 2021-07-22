@@ -1,20 +1,21 @@
 package com.liboru.reconsitution.learn.case01;
 
-import lombok.Getter;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class Customer {
 
-    @Getter
     private String name;
 
     private List<Rental> rentals = new ArrayList<>();
 
     public Customer(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void addRental(Rental arg) {
