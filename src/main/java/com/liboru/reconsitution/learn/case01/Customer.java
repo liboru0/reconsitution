@@ -25,24 +25,40 @@ public class Customer {
      * 生成详单
      */
     public String statement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
         Iterator<Rental> rentalIterator = rentals.iterator();
         String result = "Rental Record for " + this.getName() + "\n";
         while (rentalIterator.hasNext()) {
             Rental each = rentalIterator.next();
-            frequentRenterPoints += each.getFrequentRenterPoints();
             // show figures for this rental
             // 将 thisAmount 临时变量去除，但调用多次 each.getCharge() 会付出
             // 性能上的代价，但是这可以在 Rental 类中优化
             result += "\t" + each.getMovie().getTitle() + "\t" +
                     each.getCharge() + "\n";
-            totalAmount += each.getCharge();
         }
 
         // add footer lines
-        result += "Amount owed is " + totalAmount + "\n";
-        result += "You earned " + frequentRenterPoints + " frequent renter points";
+        result += "Amount owed is " + this.getTotalCharge() + "\n";
+        result += "You earned " + this.getTotalFrequentRenterPoints() + " frequent renter points";
+        return result;
+    }
+
+    private double getTotalCharge(){
+        double result = 0;
+        Iterator<Rental> rentalIterator = this.rentals.iterator();
+        while (rentalIterator.hasNext()) {
+            Rental each = rentalIterator.next();
+            result += each.getCharge();
+        }
+        return result;
+    }
+
+    private int getTotalFrequentRenterPoints(){
+        int result = 0;
+        Iterator<Rental> rentalIterator = this.rentals.iterator();
+        while (rentalIterator.hasNext()) {
+            Rental each = rentalIterator.next();
+            result += each.getFrequentRenterPoints();
+        }
         return result;
     }
 
