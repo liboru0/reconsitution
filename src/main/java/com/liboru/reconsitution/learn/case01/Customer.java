@@ -31,13 +31,7 @@ public class Customer {
         String result = "Rental Record for " + this.getName() + "\n";
         while (rentalIterator.hasNext()) {
             Rental each = rentalIterator.next();
-            // add frequent renter points
-            frequentRenterPoints++;
-            // add bonus for a two day new release rental
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
-                    each.getDaysRented() > 1) {
-                frequentRenterPoints++;
-            }
+            frequentRenterPoints += each.getFrequentRenterPoints();
             // show figures for this rental
             // 将 thisAmount 临时变量去除，但调用多次 each.getCharge() 会付出
             // 性能上的代价，但是这可以在 Rental 类中优化
